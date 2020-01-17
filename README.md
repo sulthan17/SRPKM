@@ -107,7 +107,7 @@ Laravel 6.0 with user authentication, registration with email confirmation, soci
 |Uses [Laravel Blocker](https://github.com/jeremykenedy/laravel-blocker) package|
 
 ### Installation Instructions
-1. Run `git clone https://github.com/jeremykenedy/laravel-auth.git laravel-auth`
+1. Run `git@github.com:sulthan17/SRPKM.git`
 2. Create a MySQL database for the project
     * ```mysql -u root -p```, if using Vagrant: ```mysql -u homestead -psecret```
     * ```create database laravelAuth;```
