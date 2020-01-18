@@ -133,10 +133,8 @@ class RegisterController extends Controller
                 'token'             => str_random(64),
                 'signup_ip_address' => $ipAddress->getClientIp(),
                 'activated'         => !config('settings.activation'),
-                'sender'            => 'cornerstone@untukdemo.com'
             ]);
-        // var_dump($user);
-        // die();
+            
         $user->attachRole($role);
         $this->initiateEmailActivation($user);
 

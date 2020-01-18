@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'untukdemo.com'),
+    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
 
     /*
     |--------------------------------------------------------------------------
@@ -42,7 +42,7 @@ return [
     |
     */
 
-    'port' => env('MAIL_PORT', 465),
+    'port' => env('MAIL_PORT', 587),
 
     /*
     |--------------------------------------------------------------------------
@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => env('lea nauval', 'cornerstone@untukdemo.com'),
-        'name'    => env('lea nauval', 'lea nauval'),
+        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
+        'name'    => env('MAIL_FROM_NAME', 'Example'),
     ],
 
     /*
@@ -84,9 +84,9 @@ return [
     |
     */
 
-    'username' => env('cornerstone@untukdemo.com'),
+    'username' => env('MAIL_USERNAME'),
 
-    'password' => env('cornerstone1234'),
+    'password' => env('MAIL_PASSWORD'),
 
     /*
     |--------------------------------------------------------------------------
@@ -118,6 +118,12 @@ return [
         'paths' => [
             resource_path('views/vendor/mail'),
         ],
+    ],
+
+    'ssloptions' => [
+        'allow_self_signed' => env('MAIL_SSLOPTIONS_ALLOW_SELF_SIGNED', false),
+        'verify_peer' => env('MAIL_SSLOPTIONS_VERIFY_PEER', true),
+        'verify_peer_name' => env('MAIL_SSLOPTIONS_VERIFY_PEER_NAME', true),
     ],
 
 ];
