@@ -100,8 +100,6 @@ class RegisterController extends Controller
     {
         $ipAddress = new CaptureIpTrait();
         $role = Role::where('slug', '=', 'unverified')->first();
-        var_dump('masuk');
-        die();
         $user = User::create([
                 'name'              => $data['name'],
                 'first_name'        => $data['first_name'],
@@ -122,7 +120,7 @@ class RegisterController extends Controller
     protected function register()
     {
         $ipAddress = new CaptureIpTrait();
-        $role = Role::where('slug', '=', 'unverified')->first();
+        // $role = Role::where('slug', '=', 'unverified')->first();
         $user = User::create([
                 'name'              => $_POST['name'],
                 'first_name'        => $_POST['first_name'],
@@ -133,9 +131,9 @@ class RegisterController extends Controller
                 'signup_ip_address' => $ipAddress->getClientIp(),
                 'activated'         => 1,
             ]);
-        $user->attachRole(2);
+        $user->attachRole(5);
         // $this->initiateEmailActivation($user);
-        echo '<script>alert("berhasil registrasi user")</script>';    
+        echo '<script>alert("berhasil registrasi Mahasiswa")</script>';    
         return  view('auth.login');
     }
 }

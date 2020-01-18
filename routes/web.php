@@ -18,8 +18,7 @@ Route::group(['middleware' => ['web', 'checkblocked']], function () {
     //Route::get('/', 'WelcomeController@welcome')->name('welcome');
     Route::get('/', 'Auth\RegisterController@index')->name('register');
     // Route::get('/', 'Auth\RegisterController@postregister')->name('register');
-    Route::get('/', 'Auth\LoginController@index')->name('login');
-    
+    Route::get('/', 'Auth\LoginController@index')->name('login');    
 });
 
 // Authentication Routes
@@ -56,12 +55,17 @@ Route::group(['middleware' => ['auth', 'activated', 'activity', 'twostep', 'chec
 
     //  Homepage Route - Redirect based on user role is in controller.
     Route::get('/home', ['as' => 'public.home',   'uses' => 'UserController@index']);
-
+    
     // Show users profile - viewable by other users.
     Route::get('profile/{username}', [
         'as'   => '{username}',
         'uses' => 'ProfilesController@show',
     ]);
+
+    Route::get('/informasi',  ['uses' => 'InformasiController@index'])->name('informasi');
+    Route::get('/pengajuan-dosen',  ['uses' => 'PengajuanDosenController@index'])->name('pengajuan-dosen');
+    Route::get('/proposal',  ['uses' => 'ProposalController@index'])->name('proposal');
+    Route::get('/logbook',  ['uses' => 'LogbookController@index'])->name('logbook');
 });
 
 // Registered, activated, and is current user routes.

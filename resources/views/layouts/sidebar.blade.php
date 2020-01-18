@@ -30,8 +30,11 @@
                     <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                 </a>
             </li>
-            <li>
-                <a href="http://localhost:8000/xampp/htdocs/proyek/profile">
+            @role('admin')
+
+            @elseif('mahasiswa' || 'dosen')
+            <li  class="{{ (Request::is('informasi')) ? 'active' : null }}">
+                <a href="{{ url('/informasi') }}">
                 <i class="fa fa-bullhorn"></i>
                 <span>Informasi</span>
                 <span class="pull-right-container">
@@ -39,17 +42,10 @@
                 </span>
                 </a>
             </li>
-            <li>
-                <a href="Auth/Profiles">
-                <i class="fa fa-user"></i>
-                <span>Profil</span>
-                <span class="pull-right-container">
-                <small class="label pull-right bg-green"></small>
-                </span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
+            @endrole
+            @role('mahasiswa')
+            <li class="{{ (Request::is('pengajuan-dosen')) ? 'active' : null }}">
+                <a href="{{ url('/pengajuan-dosen') }}">
                 <i class="fa fa-users"></i>
                 <span>Pengajuan Dosbim</span>
                 <span class="pull-right-container">
@@ -57,22 +53,26 @@
                 </span>
                 </a>
             </li>
-            <li>
-                <a href="#">
+            <li class="{{ (Request::is('proposal')) ? 'active' : null }}">
+                <a href="{{ url('/proposal') }}">
                 <i class="fa fa-book"></i> <span>Proposal</span>
                 <span class="pull-right-container">
                 <small class="label pull-right bg-green"></small>
                 </span>
                 </a>
             </li>
-            <li>
-                <a href="#">
+            @endrole
+            @role('admin')
+            @elseif('mahasiswa' || 'dosen')
+            <li  class="{{ (Request::is('logbook')) ? 'active' : null }}">
+                <a href="{{ url('/logbook') }}">
                 <i class="fa fa-book"></i> <span>Logbook</span>
                 <span class="pull-right-container">
                 <small class="label pull-right bg-green"></small>
                 </span>
                 </a>
             </li>
+            @endrole
             @role('admin', true)
             <li class="treeview {{ 
                         (Request::is('roles') || 
