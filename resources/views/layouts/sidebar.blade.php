@@ -25,85 +25,73 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">MAIN NAVIGATION</li>
-            <li class="active treeview">
-                <a href="#">
-                <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+            <li class="{{ (Request::is('home')) ? 'active' : null }}">
+                <a href="{{ url('/home') }}">
+                    <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:8000/xampp/htdocs/proyek/profile">
+                <i class="fa fa-bullhorn"></i>
+                <span>Informasi</span>
                 <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
+                <span class="label label-primary pull-right"></span>
                 </span>
                 </a>
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-files-o"></i>
-                <span>Pengumuman</span>
-                <span class="pull-right-container">
-                <span class="label label-primary pull-right">4</span>
-                </span>
-              </a>
             </li>
-            <li class="treeview">
-              <a href="pages/widgets.html">
-                <i class="fa fa-th"></i> <span>Profil</span>
+            <li>
+                <a href="Auth/Profiles">
+                <i class="fa fa-user"></i>
+                <span>Profil</span>
                 <span class="pull-right-container">
-                <small class="label pull-right bg-green">new</small>
-                </span>
-              </a>
-            </li>
-            <li class="treeview">
-                <a href="#">
-                <i class="fa fa-pie-chart"></i>
-                <span>Data Informasi PKM</span>
-                <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
+                <small class="label pull-right bg-green"></small>
                 </span>
                 </a>
-                <ul class="treeview-menu">
-                    <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> ChartJS</a></li>
-                    <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> Morris</a></li>
-                    <li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>
-                    <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>
-                </ul>
             </li>
-            <li class="treeview">
+            <li>
                 <a href="#">
-                <i class="fa fa-laptop"></i>
-                <span>Kelola Akun</span>
+                <i class="fa fa-users"></i>
+                <span>Pengajuan Dosbim</span>
                 <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
+                <small class="label pull-right bg-green"></small>
                 </span>
                 </a>
-                <ul class="treeview-menu">
-                    <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> General</a></li>
-                    <li><a href="pages/UI/icons.html"><i class="fa fa-circle-o"></i> Icons</a></li>
-                    <li><a href="pages/UI/buttons.html"><i class="fa fa-circle-o"></i> Buttons</a></li>
-                    <li><a href="pages/UI/sliders.html"><i class="fa fa-circle-o"></i> Sliders</a></li>
-                    <li><a href="pages/UI/timeline.html"><i class="fa fa-circle-o"></i> Timeline</a></li>
-                    <li><a href="pages/UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li>
-                </ul>
             </li>
-            <li class="treeview">
+            <li>
                 <a href="#">
-                <i class="fa fa-edit"></i> <span>Data Master</span>
+                <i class="fa fa-book"></i> <span>Proposal</span>
                 <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
+                <small class="label pull-right bg-green"></small>
                 </span>
                 </a>
-                <ul class="treeview-menu">
-                    <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> General Elements</a></li>
-                    <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> Advanced Elements</a></li>
-                    <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li>
-                </ul>
             </li>
-            <li class="treeview">
+            <li>
                 <a href="#">
-                <i class="fa fa-table"></i> <span>Proposal & Penelitian</span>
+                <i class="fa fa-book"></i> <span>Logbook</span>
                 <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
+                <small class="label pull-right bg-green"></small>
                 </span>
+                </a>
+            </li>
+            <li class="treeview {{ 
+                        (Request::is('roles') || 
+                        Request::is(
+                            'users', 'users/' . Auth::user()->id, 'users/' . Auth::user()->id . '/edit', 
+                            'users/create', 'users/deleted')) ? 'active' : null }}">
+                <a href="javascript:void(0)">
+                    <i class="fa fa-gear"></i> <span>Settings</span>
+                    <span class="pull-right-container">
+                    <i class="fa  {{ 
+                        (Request::is('roles') || 
+                        Request::is('home') || 
+                        Request::is(
+                            'users', 'users/' . Auth::user()->id, 'users/' . Auth::user()->id . '/edit', 
+                            'users/create', 'users/deleted')) ? 'fa-angle-down' : fa-angle-left }} pull-right"></i>
+                    </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="pages/tables/simple.html"><i class="fa fa-circle-o"></i> Simple tables</a></li>
-                    <li><a href="pages/tables/data.html"><i class="fa fa-circle-o"></i> Data tables</a></li>
+                    <li class="{{ Request::is('roles') ? 'active' : null }}"><a href="{{ route('laravelroles::roles.index') }}"><i class="fa fa-circle-o"></i>Role</a></li>
+                    <li class=" {{ Request::is('users', 'users/' . Auth::user()->id, 'users/' . Auth::user()->id . '/edit', 'users/create', 'users/deleted') ? 'active' : null }}"><a href="{{url('/users')}}"><i class="fa fa-circle-o"></i>Users</a></li>
                 </ul>
             </li>
         </ul>

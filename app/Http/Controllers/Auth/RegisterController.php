@@ -89,7 +89,6 @@ class RegisterController extends Controller
             ]
         );
     }
-
     /**
      * Create a new user instance after a valid registration.
      *
@@ -101,7 +100,8 @@ class RegisterController extends Controller
     {
         $ipAddress = new CaptureIpTrait();
         $role = Role::where('slug', '=', 'unverified')->first();
-
+        var_dump('masuk');
+        die();
         $user = User::create([
                 'name'              => $data['name'],
                 'first_name'        => $data['first_name'],
@@ -113,6 +113,30 @@ class RegisterController extends Controller
                 'activated'         => !config('settings.activation'),
             ]);
 
+        $user->attachRole($role);
+        $this->initiateEmailActivation($user);
+
+        return $user;
+    }
+
+    protected function register()
+    {
+        $ipAddress = new CaptureIpTrait();
+        $role = Role::where('slug', '=', 'unverified')->first();
+        
+        $user = User::create([
+                'name'              => $_POST['name'],
+                'first_name'        => $_POST['first_name'],
+                'last_name'         => $_POST['last_name'],
+                'email'             => $_POST['email'],
+                'password'          => Hash::make($_POST['password']),
+                'token'             => str_random(64),
+                'signup_ip_address' => $ipAddress->getClientIp(),
+                'activated'         => !config('settings.activation'),
+                'sender'            => 'cornerstone@untukdemo.com'
+            ]);
+        // var_dump($user);
+        // die();
         $user->attachRole($role);
         $this->initiateEmailActivation($user);
 
