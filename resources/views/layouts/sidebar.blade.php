@@ -73,6 +73,7 @@
                 </span>
                 </a>
             </li>
+            @role('admin', true)
             <li class="treeview {{ 
                         (Request::is('roles') || 
                         Request::is(
@@ -82,10 +83,19 @@
                     <i class="fa fa-gear"></i> <span>Settings</span>
                     <span class="pull-right-container">
                     <i class="fa  {{ 
-                        (Request::is('roles') || 
+                        (Request::is(
+                            'roles',
+                            'roles/create',
+                            'roles/' . Auth::user()->id , 
+                            'roles/' . Auth::user()->id . '/edit') || 
                         Request::is('home') || 
                         Request::is(
-                            'users', 'users/' . Auth::user()->id, 'users/' . Auth::user()->id . '/edit', 
+                            'permissions', 'permissions/' . Auth::user()->id,
+                            'permissions/' . Auth::user()->id . '/edit', 
+                            'permissions/create', 'permissions/deleted') ||
+                        Request::is(
+                            'users', 'users/' . Auth::user()->id,
+                            'users/' . Auth::user()->id . '/edit', 
                             'users/create', 'users/deleted')) ? 'fa-angle-down' : fa-angle-left }} pull-right"></i>
                     </span>
                 </a>
@@ -94,6 +104,7 @@
                     <li class=" {{ Request::is('users', 'users/' . Auth::user()->id, 'users/' . Auth::user()->id . '/edit', 'users/create', 'users/deleted') ? 'active' : null }}"><a href="{{url('/users')}}"><i class="fa fa-circle-o"></i>Users</a></li>
                 </ul>
             </li>
+            @endrole
         </ul>
     </section>
     <!-- /.sidebar -->

@@ -66,8 +66,8 @@ class RegisterController extends Controller
         return Validator::make($data,
             [
                 'name'                  => 'required|max:255|unique:users',
-                'first_name'            => '',
-                'last_name'             => '',
+                'first_name'            => 'required',
+                'last_name'             => 'required',
                 'email'                 => 'required|email|max:255|unique:users',
                 'password'              => 'required|min:6|max:30|confirmed',
                 'password_confirmation' => 'required|same:password',
@@ -123,7 +123,6 @@ class RegisterController extends Controller
     {
         $ipAddress = new CaptureIpTrait();
         $role = Role::where('slug', '=', 'unverified')->first();
-        
         $user = User::create([
                 'name'              => $_POST['name'],
                 'first_name'        => $_POST['first_name'],
@@ -132,12 +131,11 @@ class RegisterController extends Controller
                 'password'          => Hash::make($_POST['password']),
                 'token'             => str_random(64),
                 'signup_ip_address' => $ipAddress->getClientIp(),
-                'activated'         => !config('settings.activation'),
+                'activated'         => 1,
             ]);
-            
-        $user->attachRole($role);
-        $this->initiateEmailActivation($user);
-
-        return $user;
+        $user->attachRole(2);
+        // $this->initiateEmailActivation($user);
+        echo '<script>alert("berhasil registrasi user")</script>';    
+        return  view('auth.login');
     }
 }
