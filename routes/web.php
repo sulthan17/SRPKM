@@ -67,6 +67,7 @@ Route::group(['middleware' => ['auth', 'activated', 'activity', 'twostep', 'chec
     Route::get('/pengajuan-dosen/tambah',  ['uses' => 'PengajuanDosenController@tambah'])->name('tambah');
     Route::get('/pengajuan-dosen/detail/{id}',  ['uses' => 'PengajuanDosenController@detail'])->name('detail');
     Route::get('/pengajuan-dosen/approve/{id}',  ['uses' => 'PengajuanDosenController@approve'])->name('approve');
+    Route::get('/pengajuan-dosen/delete/{id}',  ['uses' => 'PengajuanDosenController@delete'])->name('delete');
     Route::get('/proposal',  ['uses' => 'ProposalController@index'])->name('proposal');
     Route::get('/logbook',  ['uses' => 'LogbookController@index'])->name('logbook');
     Route::get('/download/{id}', 'ProposalController@getDownload')->name('getDownload');

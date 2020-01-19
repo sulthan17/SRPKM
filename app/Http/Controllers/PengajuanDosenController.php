@@ -83,5 +83,14 @@ class PengajuanDosenController extends Controller
                 
             return redirect('/proposal');
     }
+    public function delete($id)
+    {
+
+        $detail = DB::table('pengajuan')
+                ->join('users', 'users.id', '=', 'pengajuan.dosen_id')
+                ->where('pengajuan.id_pengajuan','=', $id)->delete();
+
+        return redirect('/pengajuan-dosen');
+    }
 }
 

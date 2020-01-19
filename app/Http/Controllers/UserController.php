@@ -53,7 +53,10 @@ class UserController extends Controller
         }
 
         if($user->isDosen() || $user->isMahasiswa()){
+            $informasi = DB::table('informasi')->get();
+
             return view('pages.user.home',[
+                'informasi' => $informasi,
                 'pengajuan' => $pengajuan,
                 'pengajuan_baru'=> $pengajuanBaru,
                 'pengajuan_disetujui' => $pengajuanDisetujui,

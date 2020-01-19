@@ -70,7 +70,7 @@
                                     class="btn btn-xs btn-danger disabled">
                                     <i class="fa fa-trash"></i> Delete</a>
                             @else
-                            <a  href="" 
+                            <a  href="{{url('/pengajuan-dosen/delete/'.$item->id_pengajuan)}}" 
                                     class="btn btn-xs btn-danger" 
                                     onclick="if(confirm('Apakah Anda ingin Menghapus ?')){}else{return false;}">
                                     <i class="fa fa-trash"></i> Delete</a>
