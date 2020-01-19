@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use Illuminate\Support\Facades\DB;
 
 class InformasiController extends Controller
 {
@@ -23,6 +24,10 @@ class InformasiController extends Controller
      */
     public function index()
     {
-        return view('pages.informasi.home');
+        $informasi = DB::table('informasi')->get();
+
+        return view('pages.informasi.home', [
+        'informasi' => $informasi
+        ]);
     }
 }

@@ -64,8 +64,12 @@ Route::group(['middleware' => ['auth', 'activated', 'activity', 'twostep', 'chec
 
     Route::get('/informasi',  ['uses' => 'InformasiController@index'])->name('informasi');
     Route::get('/pengajuan-dosen',  ['uses' => 'PengajuanDosenController@index'])->name('pengajuan-dosen');
+    Route::get('/pengajuan-dosen/tambah',  ['uses' => 'PengajuanDosenController@tambah'])->name('tambah');
+    Route::get('/pengajuan-dosen/detail/{id}',  ['uses' => 'PengajuanDosenController@detail'])->name('detail');
+    Route::get('/pengajuan-dosen/approve/{id}',  ['uses' => 'PengajuanDosenController@approve'])->name('approve');
     Route::get('/proposal',  ['uses' => 'ProposalController@index'])->name('proposal');
     Route::get('/logbook',  ['uses' => 'LogbookController@index'])->name('logbook');
+    Route::get('/download/{id}', 'ProposalController@getDownload')->name('getDownload');
 });
 
 // Registered, activated, and is current user routes.
@@ -103,6 +107,7 @@ Route::group(['middleware' => ['auth', 'activated', 'currentUser', 'activity', '
 
     // Route to upload user avatar.
     Route::post('avatar/upload', ['as' => 'avatar.upload', 'uses' => 'ProfilesController@upload']);
+    Route::post('file/upload', ['as' => 'file.upload', 'uses' => 'PengajuanDosenController@tambah']);
 });
 
 // Registered, activated, and is admin routes.

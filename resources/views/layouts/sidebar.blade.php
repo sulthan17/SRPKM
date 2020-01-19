@@ -31,8 +31,6 @@
                 </a>
             </li>
             @role('admin')
-
-            @elseif('mahasiswa' || 'dosen')
             <li  class="{{ (Request::is('informasi')) ? 'active' : null }}">
                 <a href="{{ url('/informasi') }}">
                 <i class="fa fa-bullhorn"></i>
@@ -44,7 +42,7 @@
             </li>
             @endrole
             @role('mahasiswa')
-            <li class="{{ (Request::is('pengajuan-dosen')) ? 'active' : null }}">
+            <li class="{{ (Request::is('pengajuan-dosen', 'pengajuan-dosen/tambah')) ? 'active' : null }}">
                 <a href="{{ url('/pengajuan-dosen') }}">
                 <i class="fa fa-users"></i>
                 <span>Pengajuan Dosbim</span>
@@ -53,6 +51,8 @@
                 </span>
                 </a>
             </li>
+            @endrole
+            @role('dosen')
             <li class="{{ (Request::is('proposal')) ? 'active' : null }}">
                 <a href="{{ url('/proposal') }}">
                 <i class="fa fa-book"></i> <span>Proposal</span>
@@ -87,15 +87,16 @@
                             'roles',
                             'roles/create',
                             'roles/' . Auth::user()->id , 
-                            'roles/' . Auth::user()->id . '/edit') || 
+                            'roles/' . Auth::user()->id .'/edit') || 
                         Request::is('home') || 
+                        Request::is('informasi') || 
                         Request::is(
                             'permissions', 'permissions/' . Auth::user()->id,
                             'permissions/' . Auth::user()->id . '/edit', 
                             'permissions/create', 'permissions/deleted') ||
                         Request::is(
                             'users', 'users/' . Auth::user()->id,
-                            'users/' . Auth::user()->id . '/edit', 
+                            'users/' . Auth::user()->id .'/edit', 
                             'users/create', 'users/deleted')) ? 'fa-angle-down' : fa-angle-left }} pull-right"></i>
                     </span>
                 </a>

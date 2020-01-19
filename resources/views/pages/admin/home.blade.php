@@ -24,15 +24,12 @@
             <!-- small box -->
             <div class="small-box bg-aqua">
                 <div class="inner">
-                    <h3>0</h3>
+                    <h3>{{$pengajuan_baru}}</h3>
                     <p>Pengajuan Baru</p>
                 </div>
                 <div class="icon">
                     <i class="fa fa-paper-plane"></i>
                 </div>
-                <a href="#" class="small-box-footer">
-                Lihat Detail <i class="fa fa-arrow-circle-right"></i>
-                </a>
             </div>
         </div>
         <!-- ./col -->
@@ -40,15 +37,12 @@
             <!-- small box -->
             <div class="small-box bg-green">
                 <div class="inner">
-                    <h3>0</h3>
+                    <h3>{{$pengajuan_disetujui}}</h3>
                     <p>Proposal Lolos Seleksi</p>
                 </div>
                 <div class="icon">
                     <i class="fa fa-check"></i>
                 </div>
-                <a href="#" class="small-box-footer">
-                Lihat Detail <i class="fa fa-arrow-circle-right"></i>
-                </a>
             </div>
         </div>
         <!-- ./col -->
@@ -56,15 +50,12 @@
             <!-- small box -->
             <div class="small-box bg-yellow">
                 <div class="inner">
-                    <h3>0</h3>
-                    <p>Proposal Yang Didanai</p>
+                    <h3>{{$pengajuan_ditolak}}</h3>
+                    <p>Proposal Yang Ditolak</p>
                 </div>
                 <div class="icon">
                     <i class="fa fa-dollar"></i>
                 </div>
-                <a href="#" class="small-box-footer">
-                Lihat Detail <i class="fa fa-arrow-circle-right"></i>
-                </a>
             </div>
         </div>
         <!-- ./col -->
@@ -78,9 +69,6 @@
                 <div class="icon">
                     <i class="ion ion-pie-graph"></i>
                 </div>
-                <a href="#" class="small-box-footer">
-                Lihat Detail <i class="fa fa-arrow-circle-right"></i>
-                </a>
             </div>
         </div>
         <!-- ./col -->
